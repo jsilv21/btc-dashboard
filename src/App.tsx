@@ -10,8 +10,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useState } from "react";
+import { processBlocks } from "@/api/get-blocks";
+import { BlocksList } from "@/components/BlocksList";
 
 export default function App() {
+  const [blocks, setBlocks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    processBlocks()
+      .then(setBlocks)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+
+    console.log("Blocks fetched:", blocks);
+  }, []);
+
   return (
     <Tabs defaultValue="account" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
@@ -21,24 +37,15 @@ export default function App() {
       <TabsContent value="account">
         <Card>
           <CardHeader>
-            <CardTitle>Account</CardTitle>
+            <CardTitle>Blocks Data:</CardTitle>
             <CardDescription>
-              Make changes to your account here. Click save when you're done.
+              Data for the last 15 blocks mined on the Bitcoin network.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
-            </div>
+            <BlocksList blocks={blocks} loading={loading} error={error} />
           </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
+          <CardFooter></CardFooter>
         </Card>
       </TabsContent>
       <TabsContent value="password">
