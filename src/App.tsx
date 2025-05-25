@@ -72,6 +72,7 @@ export default function App() {
                   blocks={blocks.slice(0, 1)}
                   loading={loading}
                   error={error}
+                  preview={true}
                 />
               </CardContent>
             </Card>
@@ -92,7 +93,12 @@ export default function App() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <BlocksList blocks={blocks} loading={loading} error={error} />
+                  <BlocksList
+                    blocks={blocks}
+                    loading={loading}
+                    error={error}
+                    preview={false}
+                  />
                 </CardContent>
               </Card>
             </TabsContent>
@@ -102,7 +108,7 @@ export default function App() {
                   <CardTitle>overview</CardTitle>
                   <CardDescription>tbd</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">
+                {/* <CardContent className="space-y-2">
                   <div className="space-y-1">
                     <Label htmlFor="current">Current password</Label>
                     <Input id="current" type="password" />
@@ -114,7 +120,7 @@ export default function App() {
                 </CardContent>
                 <CardFooter>
                   <Button>Save password</Button>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </TabsContent>
           </Tabs>

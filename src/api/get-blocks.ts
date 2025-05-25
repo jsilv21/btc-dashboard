@@ -10,6 +10,7 @@ type BlockExtras = {
   };
 };
 type Block = {
+  id: string;
   height: number;
   difficulty: number;
   tx_count: number;
@@ -22,6 +23,7 @@ type PriceData = {
 };
 
 type ProcessedBlock = {
+  id: string;
   height: number;
   difficulty: number;
   txCount: number;
@@ -56,6 +58,7 @@ export const processBlocks = async (): Promise<ProcessedBlock[]> => {
     getCurrentPrice(),
   ]);
   const processedBlocks = blocks.map((block) => ({
+    id: block.id,
     height: block.height,
     difficulty: block.difficulty,
     txCount: block.tx_count,
