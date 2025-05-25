@@ -46,6 +46,7 @@ export default function App() {
   const [blocks, setBlocks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [displaySats, setDisplaySats] = useState(true); // new state variable
 
   useEffect(() => {
     processBlocks()
@@ -73,6 +74,7 @@ export default function App() {
                   loading={loading}
                   error={error}
                   preview={true}
+                  displaySats={displaySats} // pass the state variable
                 />
               </CardContent>
             </Card>
@@ -86,18 +88,37 @@ export default function App() {
             </TabsList>
             <TabsContent value="blocks">
               <Card>
-                <CardHeader>
+                <CardHeader className="flex items-center justify-between">
+                  {/* Add flex container */}
                   <CardTitle>Blocks Data</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setDisplaySats(!displaySats)}
+                  >
+                    {displaySats ? "View in USD" : "View in Sats"}
+                  </Button>
+                </CardHeader>
+                <CardContent className="space-y-2">
                   <CardDescription>
                     Data for the last 15 blocks mined on the Bitcoin network.
+                    <br />
+                    Courtesy of{" "}
+                    <a
+                      href="https://mempool.space"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      mempool.space
+                    </a>
                   </CardDescription>
-                </CardHeader>
-                <CardContent>
                   <BlocksList
                     blocks={blocks}
                     loading={loading}
                     error={error}
                     preview={false}
+                    displaySats={displaySats} // pass the state variable
                   />
                 </CardContent>
               </Card>

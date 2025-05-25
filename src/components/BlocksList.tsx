@@ -7,9 +7,16 @@ type Props = {
   loading: boolean;
   error: string | null;
   preview?: boolean;
+  displaySats?: boolean;
 };
 
-export function BlocksList({ blocks, loading, error, preview = false }: Props) {
+export function BlocksList({
+  blocks,
+  loading,
+  error,
+  preview = false,
+  displaySats = false,
+}: Props) {
   if (loading) return <div>Loading blocks...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -29,16 +36,37 @@ export function BlocksList({ blocks, loading, error, preview = false }: Props) {
               <div>
                 <strong>Time:</strong> {block.timestamp}
               </div>
+              <div>
+                <strong>Reward:</strong>{" "}
+                {displaySats ? block.reward : block.rewardUSD}
+              </div>
               {!preview && (
                 <>
-                  <div>
-                    <strong>Reward:</strong> {block.rewardUSD}
+                  <div className="ml-4">
+                    <p>
+                      <strong>Subsidy: </strong>
+                      {displaySats ? block.subsidy : block.subsidyUSD}
+                    </p>
+                    <p>
+                      <strong>Fees: </strong>
+                      {displaySats ? block.fees : block.feesUSD}
+                    </p>
+                    <p>
+                      <strong>Avg Fee:</strong>{" "}
+                      {displaySats ? block.avgFee : block.avgFeeUSD}
+                    </p>
                   </div>
                   <div>
                     <strong>Pool:</strong> {block.poolName}
                   </div>
                   <div>
                     <strong>Tx Count:</strong> {block.txCount}
+                  </div>
+                  <div>
+                    <strong>Difficulty:</strong> {block.difficulty}
+                  </div>
+                  <div>
+                    <strong>ID:</strong> {block.id}
                   </div>
                 </>
               )}
@@ -63,11 +91,6 @@ export function BlocksList({ blocks, loading, error, preview = false }: Props) {
               </svg>
             </Button>
           </div>
-          {!preview && (
-            <div>
-              <strong>ID:</strong> {block.id}
-            </div>
-          )}
         </li>
       ))}
     </ul>
