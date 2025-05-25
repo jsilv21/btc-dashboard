@@ -10,8 +10,8 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Simple sidebar component
@@ -121,6 +121,7 @@ export default function App() {
                     displaySats={displaySats} // pass the state variable
                   />
                 </CardContent>
+                <CardFooter></CardFooter>
               </Card>
             </TabsContent>
             <TabsContent value="overview">
