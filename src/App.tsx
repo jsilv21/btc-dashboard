@@ -16,29 +16,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MiniChart } from "react-ts-tradingview-widgets";
 import SatsToUsdConverter from "./components/SatsToUsdConverter";
 
-// Simple sidebar component
-function Sidebar() {
-  return (
-    <aside className="bg-gray-900 text-white w-56 min-h-screen p-6 flex flex-col gap-4">
-      <div className="text-2xl font-bold mb-8">BTC Dashboard</div>
-      <nav className="flex flex-col gap-2">
-        <Button variant="ghost" className="justify-start">
-          Blocks
-        </Button>
-        <Button variant="ghost" className="justify-start">
-          Details
-        </Button>
-        {/* Add more nav items here */}
-      </nav>
-    </aside>
-  );
-}
-
 // Simple header component
 function Header() {
   return (
     <header className="bg-white shadow px-8 py-4 flex items-center justify-between">
-      <h1 className="text-2xl font-bold">Bitcoin Dashboard</h1>
+      <h1 className="text-2xl font-bold">
+        <i className="fa fa-bitcoin" />
+        itcoin Dashboard
+      </h1>
+
       {/* Add user info, notifications, etc. here */}
     </header>
   );
@@ -59,7 +45,6 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />
         <main className="flex-1 p-8">

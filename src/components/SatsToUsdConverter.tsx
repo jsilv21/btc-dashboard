@@ -72,7 +72,10 @@ export default function SatsToUsdConverter() {
       <CardHeader>
         <CardTitle>Sats to USD Converter</CardTitle>
         <CardDescription>
-          $1 is worth {usdToSats(1, btcPrice).toFixed(0)} satoshis.
+          {`$1 is worth ${usdToSats(1, btcPrice).toFixed(0)} satoshis (sats) `}
+          <i className="fak fa-satoshisymbol-solidcir" />
+          <br></br>
+          {`There are ${SATS_PER_BTC.toLocaleString()} sats in 1 BTC.`}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
