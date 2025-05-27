@@ -10,10 +10,11 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MiniChart } from "react-ts-tradingview-widgets";
+import SatsToUsdConverter from "./components/SatsToUsdConverter";
 
 // Simple sidebar component
 function Sidebar() {
@@ -91,18 +92,7 @@ export default function App() {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
-                <CardTitle>Sats Per Dollar</CardTitle>
-                <CardDescription>tbd</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {" "}
-                <div className="space-y-1">
-                  <Label htmlFor="satsinput">Sats</Label>
-                  <Input id="satsinput" placeholder="1000" />
-                  <Input id="dollarsinput" placeholder="0.01" />
-                </div>
-              </CardContent>
+              <SatsToUsdConverter />
             </Card>
           </div>
           {/* Tabs for main content */}
