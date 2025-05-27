@@ -18,7 +18,7 @@ export default function SatsToUsdConverter() {
   const [usd, setUsd] = useState<number | undefined>(0.01);
   const [btcPrice, setBtcPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+  //TODO: Use the constants file for price metrics, or create a custom hook for fetching BTC price
   useEffect(() => {
     const fetchBtcPrice = async () => {
       try {
@@ -42,12 +42,14 @@ export default function SatsToUsdConverter() {
 
   const satsToUsd = (sats: number, btcPrice: number | null): number => {
     if (!btcPrice) return 0;
-    return (sats / SATS_PER_BTC) * btcPrice;
+    // Format to cents (2 decimal places)
+    return parseFloat(((sats / SATS_PER_BTC) * btcPrice).toFixed(2));
   };
 
   const usdToSats = (usd: number, btcPrice: number | null): number => {
     if (!btcPrice) return 0;
-    return (usd / btcPrice) * SATS_PER_BTC;
+    // Round to nearest satoshi
+    return Math.round((usd / btcPrice) * SATS_PER_BTC);
   };
 
   const handleSatsChange = (e: React.ChangeEvent<HTMLInputElement>) => {

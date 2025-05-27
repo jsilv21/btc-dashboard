@@ -38,7 +38,13 @@ export function BlocksList({
               </div>
               <div>
                 <strong>Reward:</strong>{" "}
-                {displaySats ? block.reward : block.rewardUSD}
+                {displaySats ? (
+                  <>
+                    <i className="fak fa-thin" /> {block.reward}
+                  </>
+                ) : (
+                  block.rewardUSD
+                )}
               </div>
               {!preview && (
                 <>
